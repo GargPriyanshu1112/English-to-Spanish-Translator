@@ -13,13 +13,11 @@ class Encoder(tf.keras.Model):
         self.encoder_units = encoder_units
         self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim) 
         self.gru = gru(encoder_units)
-        
     
     def call(self, x, initial_state):
         x = self.embedding(x)
         enc_hidden_states, enc_output_state = self.gru(x, initial_state=initial_state)
         return enc_hidden_states, enc_output_state
-    
 
     def initialize_hidden_state(self):
         return tf.zeros((self.batch_size, self.encoder_units))
@@ -32,7 +30,6 @@ class BahdanauAttention(tf.keras.layers.Layer):
         self.W1 = tf.keras.layers.Dense(units)
         self.W2 = tf.keras.layers.Dense(units)
         self.V  = tf.keras.layers.Dense(1)
-
     
     def call(self, enc_hidden_states,  dec_input_state):
         dec_input_state = tf.expand_dims(dec_input_state, axis=1)
@@ -53,7 +50,6 @@ class Decoder(tf.keras.Model):
         self.gru = gru(decoder_units)
         self.fc = tf.keras.layers.Dense(vocab_size)
         self.attention = BahdanauAttention(self.decoder_units)
-
 
     def call(self, x, enc_hidden_states, dec_input_state):
         context_vector, attention_weights = self.attention(enc_hidden_states, dec_input_state)
