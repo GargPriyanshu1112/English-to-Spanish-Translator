@@ -1,4 +1,3 @@
-# Import dependencies
 import tensorflow as tf
 
 
