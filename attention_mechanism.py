@@ -52,7 +52,7 @@ class Decoder(tf.keras.Model):
         self.decoder_units = decoder_units
         self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
         self.gru = gru(decoder_units)
-        self.fc = tf.keras.layers.Dense(vocab_size)
+        self.fc = tf.keras.layers.Dense(vocab_size, activation="softmax")
         self.attention = BahdanauAttention(self.decoder_units)
 
     def call(self, x, enc_hidden_states, dec_input_state):
