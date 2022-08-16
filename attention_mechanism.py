@@ -1,3 +1,7 @@
+# Import dependencies
+import tensorflow as tf
+
+
 def gru(units):
   return tf.keras.layers.GRU(units=units,
                              return_sequences=True,
