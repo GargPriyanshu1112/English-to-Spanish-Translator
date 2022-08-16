@@ -46,7 +46,7 @@ class BahdanauAttention(tf.keras.layers.Layer):
 
 
 class Decoder(tf.keras.Model):
-    def __init__(self, vocab_size, embedding_size, decoder_units, batch_size):
+    def __init__(self, vocab_size, embedding_dim, decoder_units, batch_size):
         super(Decoder, self).__init__()
         self.batch_size = batch_size
         self.decoder_units = decoder_units
