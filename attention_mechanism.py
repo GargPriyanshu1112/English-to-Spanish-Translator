@@ -2,21 +2,16 @@
 import tensorflow as tf
 
 
-def gru(units):
-  return tf.keras.layers.GRU(units=units,
-                             return_sequences=True,
-                             return_state=True,
-                             recurrent_initializer='glorot_uniform')
-
-
-
 class Encoder(tf.keras.Model): 
     def __init__(self, vocab_size, embedding_dim, encoder_units, batch_size):
         super(Encoder, self).__init__()
         self.batch_size = batch_size
         self.encoder_units = encoder_units
         self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim) 
-        self.gru = gru(encoder_units)
+        self.gru = tf.keras.layers.GRU(units=encoder_units,
+                                       return_sequences=True,
+                                       return_state=True,
+                                       recurrent_initializer='glorot_uniform')
     
     def call(self, x, initial_state):
         x = self.embedding(x)
