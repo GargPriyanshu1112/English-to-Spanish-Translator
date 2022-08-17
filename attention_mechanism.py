@@ -47,7 +47,10 @@ class Decoder(tf.keras.Model):
         self.batch_size = batch_size
         self.decoder_units = decoder_units
         self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
-        self.gru = gru(decoder_units)
+        self.gru = self.gru = tf.keras.layers.GRU(units=decoder_units,
+                                                  return_sequences=True,
+                                                  return_state=True,
+                                                  recurrent_initializer='glorot_uniform')
         self.fc = tf.keras.layers.Dense(vocab_size, activation="softmax")
         self.attention = BahdanauAttention(self.decoder_units)
 
