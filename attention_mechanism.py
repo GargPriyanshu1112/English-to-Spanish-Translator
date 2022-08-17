@@ -38,7 +38,7 @@ class BahdanauAttention(tf.keras.layers.Layer):
     def call(self, enc_hidden_states,  dec_input_state):
         dec_input_state = tf.expand_dims(dec_input_state, axis=1)
         score = self.V(tf.nn.tanh(self.W1(dec_input_state) + self.W2(enc_hidden_states)))
-        attention_weights = tf.nn_softmax(score, axis=1)
+        attention_weights = tf.nn.softmax(score, axis=1)
         context_vector = attention_weights * enc_hidden_states
         
         return context_vector, attention_weights
