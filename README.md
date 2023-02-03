@@ -1,1 +1,2 @@
-# Neural Machine Translation Using Attention Mechanism
+# English to Spanish Translator (Neural Machine Translation)
+
