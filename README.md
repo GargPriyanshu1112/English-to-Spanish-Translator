@@ -1,2 +1,2 @@
-# English to Spanish Translator (Neural Machine Translation)
+## English to Spanish Translator (Neural Machine Translation)
 
